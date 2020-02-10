@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>First Vagrant Build</title>
+    <style>
+    body {width: 90%;margin: 1em auto;background: #222;color:#ccc;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";line-height: 1.75;font-size:18px;}
+    main {display: grid; grid-template-columns: 1fr 1fr;}
+    @media screen and (max-width: 768px){main {grid-template-columns: 1fr;}}
+    a:link{color:#6789ab;}
+    a:active{color:#eee;}
+    a:hover{color:cyan;}
+    a:visited{color:#789abc;}
+    .step {background: #333;margin: 1em; padding: 1em;border: 1px solid #444;border-radius:4px;}
+    code {background: #555; color:#ddd; padding: .35em .75em .3em .75em;}
+    h3 {border-bottom: 1px solid #e0e0e0; padding-bottom: .5em;}
+    p:first-child {padding-top: 0;margin-top:0;}
+    img {width: 100%; height: auto;}
+    </style>
+  </head>
+  <body>
+    <h1 id="your-first-vagrant-build">Your First Vagrant Build</h1>
+    <p>These instructions explain how to use vagrant and virtual box to create a fully-provisioned virtual machine on your local to use for development.</p>
+    <main>
+      <div class="step">
+        <h3 id="step-1">Step 1</h3>
+        <p>Install Vagrant by choosing the correct version and following the standard installation process for your operating system. Vagrant can be downloaded <a href="https://www.vagrantup.com/downloads.html">here</a>.</p>
+      </div>
+      <div class="step">
+        <h3 id="step-2">Step 2</h3>
+        <p>Install VirtualBox by choosing the correct version and following your OS&#39;s standard installation process. VirtualBox can be downloaded <a href="https://www.virtualbox.org/wiki/Downloads">here</a>.</p>
+      </div>
+      <div class="step">
+        <h3 id="step-3">Step 3</h3>
+        <p>Open up a terminal and <code>cd</code> into a directory where you plan to store your project. Then, run <code>mkdir projectName</code> where projectName is the name of the directory where the project will live. Finally, enter <code>cd projectName</code> to move your working directory to the folder you just created.</p>
+      </div>
+      <div class="step">
+        <h3 id="step-4">Step 4</h3>
+        <p>Either copy a vagrantfile into this directory, or create a new one. You can create a new vagrantfile by running the following from <em>within your project directory</em>:
+        <code>vagrant init scotch/box</code></p>
+        <p><em>Please note</em>: the vagrant config file must be named &quot;Vagrantfile&quot; with no extension and it must live at the top level of your project directory.</p>
+      </div>
+      <div class="step">
+        <h3 id="step-5">Step 5</h3>
+        <p>Once you&#39;ve initiated vagrant, you can create and provision a VM by running the <code>vagrant up</code> command from within your project directory. This will spin up the VW you specified in the previous step. It will likely take a few minutes to complete.</p>
+      </div>
+      <div class="step">
+        <h3 id="step-6">Step 6</h3>
+        <p>Once your VM is active, you can connect to it through SSH. Run the following command from within the project directory: <code>vagrant ssh</code>.</p>
+        <p>You should see your command prompt change to show a new working directory. Remember, you can always see where you are by entering the <code>pwd</code> command.</p>
+      </div>
+      <div class="step">
+        <h3 id="step-7">Step 7</h3>
+        <p>Now, you can nagivate to your web root. Where that is exactly depends on what kind of OS you installed on your virtual box, but probably (if it&#39;s a *nix OS) you will start off in your user&#39;s home directory, while the web root will be somewhere under /var/www/. Enter: <code>cd ../../var/www/public</code> to go up two levels and then back down into the web root.</p>
+      </div>
+      <div class="step">
+        <h3 id="step-8">Step 8</h3>
+        <p>On your local machine (called the &quot;host&quot;), the project directory you created in Step 3 has been automatically synched with the web root on the virtual machine (called the &quot;guest&quot;).</p>
+        <p>You can verify this by putting an index.html file into the project directory (on the host machine) and then using the <code>ls</code> command from the web root (on the guest machine).</p>
+        <p><code>vagrant@scotchbox:var/www/public$ ls -al</code></p>
+        <p>You should see the same index.html file you added to the project directory on your host machine. You can verify this by using <code>nano</code> (or another editor) to read the file contents.</p>
+      </div>
+      <div class="step">
+        <h3 id="step-9">Step 9</h3>
+        <p>The virtual machine is using resources on your host machine. There are a variety of commands to shut vagrant down in different ways: <code>vagrant halt</code> and <code>vagrant suspend</code> being the two most common. We are going to go a step further and remove the virtual machine entirely so it doesn&#39;t use any resources and leaves no <em>cruft</em>.</p>
+        <p>First, terminate your SSH session by typing <code>logout</code> or hitting &quot;ctrl+D&quot;.</p>
+        <p>Now that the command prompt shows your working directory is back on your host machine, enter the following from <em>within your project directory</em>:</p>
+        <p><code>vagrant destroy</code></p>
+        <p>You will be prompted to confirm. Once you do, the machine will be compeltely removed from your system.</p>
+      </div>
+      <div class="step">
+        <h3 id="finished">Finished</h3>
+        <p>Now you know how to spin up and tear down a virtual machine using Vagrant.</p>
+        <p>You can use this machine for development however you like, without cluttering up your local machine with all your work.</p>
+        <p>Additionally, you can share your vagrantfile with your team so you all can build in the same environment.</p>
+      </div>
+    </main>
+  </body>
+</html>
